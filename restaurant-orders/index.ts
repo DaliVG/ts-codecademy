@@ -39,6 +39,7 @@ function printOrders(restaurants: Restaurant[], filteredOrders: Order[][]) {
         }
     })
 };
+
 const eligibleOrders = getOrders(PriceBracket.Low, orders);
 printOrders(restaurants, eligibleOrders);
 
