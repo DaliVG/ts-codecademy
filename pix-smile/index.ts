@@ -17,19 +17,19 @@ drawDot(15, 4);
 outputImage();
 
 function drawRectangle(
-  x: number,
-  y: number,
-  width: number,
-  height: number
+    x: number,
+    y: number,
+    width: number,
+    height: number
 ) {
-  // top
-  drawHorizontalLine(x, y, width);
-  // bottom
-  drawHorizontalLine(x, y + height - 1, width);
-  // left
-  drawVerticalLine(x, y, height);
-  // right
-  drawVerticalLine(x + width - 1, y, height);
+    // top
+    drawHorizontalLine(x, y, width);
+    // bottom
+    drawHorizontalLine(x, y + height - 1, width);
+    // left
+    drawVerticalLine(x, y, height);
+    // right
+    drawVerticalLine(x + width - 1, y, height);
 }
 
 /**
@@ -40,7 +40,7 @@ function drawRectangle(
  * the image.
  */
 function isPointInImage(x: number, y: number) {
-  return x >= 0 && x < imageWidth && y >= 0 && y < imageHeight;
+    return x >= 0 && x < imageWidth && y >= 0 && y < imageHeight;
 }
 
 /**
@@ -51,17 +51,17 @@ function isPointInImage(x: number, y: number) {
  * "off" pixel with.
  */
 function outputImage(onChar = "X", offChar = " ") {
-  let text = "";
+    let text = "";
 
-  for (let i = 0; i < imageData.length; i++) {
-    if (i > 0 && i % imageWidth === 0) {
-      text += "\n"; // new line
+    for (let i = 0; i < imageData.length; i++) {
+        if (i > 0 && i % imageWidth === 0) {
+            text += "\n"; // new line
+        }
+
+        text += imageData[i] ? onChar : offChar;
     }
 
-    text += imageData[i] ? onChar : offChar;
-  }
-
-  console.log(text);
+    console.log(text);
 }
 
 /**
@@ -85,14 +85,24 @@ function outputImage(onChar = "X", offChar = " ") {
  * future module.
  */
 function createImageData(): boolean[] {
-  // create array of size `length` containing `false` values
-  const length = imageWidth * imageHeight;
-  return new Array(length).fill(false);
+    // create array of size `length` containing `false` values
+    const length = imageWidth * imageHeight;
+    return new Array(length).fill(false);
 }
 
-function drawDot(x:number ,y:number ){
-  if(isPointInImage(x,y)){
-    imageData[y * imageWidth + x] = true
-  }
+function drawDot(x: number, y: number) {
+    if (isPointInImage(x, y)) {
+        imageData[y * imageWidth + x] = true
+    }
 }
-function drawHorizontalLine()
+function drawHorizontalLine(x: number, y: number, length: number) {
+    for (let i = 0; i < length; i++) {
+        drawDot(x + i, y)
+    }
+}
+
+function drawVerticalLine(x: number, y: number, length: number) {
+    for (let i = 0; i < length; i++) {
+        drawDot(x, y + i)
+    }
+}
